@@ -20,9 +20,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     // 配置 URL 访问权限
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeRequests().antMatchers("/github/**").permitAll()
                 .antMatchers("/admin/**").hasRole("admin")
                 .antMatchers("/user/**").hasRole("user")
                 .anyRequest().authenticated();
+
     }
 }
